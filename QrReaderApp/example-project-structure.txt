@@ -1,0 +1,109 @@
+Complete File Structure for MAUI QR Reader App
+================================================
+
+QrReaderApp/
+│
+├── App.xaml
+├── App.xaml.cs
+├── AppShell.xaml
+├── AppShell.cs
+├── MauiProgram.cs
+│
+├── Models/
+│   ├── QrScanResult.cs
+│   └── ScanHistoryItem.cs
+│
+├── ViewModels/
+│   ├── BaseViewModel.cs
+│   ├── MainViewModel.cs
+│   └── QrScannerViewModel.cs
+│
+├── Views/
+│   ├── MainPage.xaml
+│   ├── MainPage.xaml.cs
+│   ├── QrScannerPage.xaml
+│   └── QrScannerPage.xaml.cs
+│
+├── Services/
+│   ├── Interfaces/
+│   │   ├── IQrCodeService.cs
+│   │   ├── IPermissionService.cs
+│   │   └── INavigationService.cs
+│   └── Implementations/
+│       ├── QrCodeService.cs
+│       ├── PermissionService.cs
+│       └── NavigationService.cs
+│
+├── Converters/
+│   └── InvertedBoolConverter.cs
+│
+├── Platforms/
+│   ├── Android/
+│   │   ├── MainActivity.cs
+│   │   ├── MainApplication.cs
+│   │   └── AndroidManifest.xml
+│   ├── iOS/
+│   │   ├── AppDelegate.cs
+│   │   ├── Program.cs
+│   │   └── Info.plist
+│   ├── MacCatalyst/
+│   │   ├── AppDelegate.cs
+│   │   ├── Program.cs
+│   │   └── Info.plist
+│   └── Windows/
+│       ├── App.xaml
+│       ├── App.xaml.cs
+│       └── Package.appxmanifest
+│
+└── Resources/
+    ├── AppIcon/
+    │   └── appicon.svg
+    ├── Images/
+    │   └── qr_icon.svg
+    ├── Fonts/
+    │   ├── OpenSans-Regular.ttf
+    │   └── OpenSans-Semibold.ttf
+    ├── Styles/
+    │   ├── Colors.xaml
+    │   └── Styles.xaml
+    └── Raw/
+        └── (any raw assets)
+
+Key Files to Create First:
+===========================
+
+1. MauiProgram.cs - Configure DI container
+2. Services/Interfaces/IQrCodeService.cs - Define service contract
+3. Services/Implementations/QrCodeService.cs - Implement QR scanning logic
+4. ViewModels/BaseViewModel.cs - Base class for all VMs
+5. ViewModels/QrScannerViewModel.cs - Scanner page VM
+6. Views/QrScannerPage.xaml - Scanner UI
+7. Platform-specific permission configurations
+
+Recommended Creation Order:
+===========================
+
+Step 1: Project Setup
+- Create MAUI project
+- Install NuGet packages
+- Configure MauiProgram.cs
+
+Step 2: Models & Interfaces
+- Create model classes
+- Define service interfaces
+
+Step 3: Services
+- Implement services
+- Register in DI container
+
+Step 4: ViewModels
+- Create BaseViewModel
+- Implement feature ViewModels
+
+Step 5: Views
+- Create XAML pages
+- Wire up data bindings
+
+Step 6: Platform Configuration
+- Add permissions
+- Test on devices

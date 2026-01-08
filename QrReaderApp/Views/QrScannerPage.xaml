@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.Maui.Controls"
+             xmlns:vm="clr-namespace:QrReaderApp.ViewModels"
+             x:Class="QrReaderApp.Views.QrScannerPage"
+             x:DataType="vm:QrScannerViewModel"
+             Title="{Binding Title}">
+
+    <Grid RowDefinitions="*, Auto">
+        <!-- Camera View -->
+        <zxing:CameraBarcodeReaderView 
+            Grid.Row="0"
+            IsDetecting="{Binding IsScanning}"
+            BarcodesDetected="CameraBarcodeReaderView_BarcodesDetected"
+            CameraLocation="Rear" />
+
+        <!-- Scanning Overlay -->
+        <Grid Grid.Row="0" 
+              BackgroundColor="Transparent"
+              IsVisible="{Binding IsScanning}">
+            <Frame 
+                WidthRequest="250"
+                HeightRequest="250"
+                CornerRadius="20"
+                BorderColor="White"
+                BackgroundColor="Transparent"
+                HasShadow="False"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Padding="0">
+                <Grid>
+                    <BoxView Color="White" Opacity="0.3" />
+                    <Label 
+                        Text="Align QR code within frame"
+                        TextColor="White"
+                        FontSize="14"
+                        HorizontalOptions="Center"
+                        VerticalOptions="End"
+                        Margin="0,0,0,10"/>
+                </Grid>
+            </Frame>
+        </Grid>
+
+        <!-- Bottom Control Panel -->
+        <VerticalStackLayout 
+            Grid.Row="1"
+            Padding="20"
+            Spacing="15"
+            BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}">
+            
+            <!-- Scanned Text Display -->
+            <Frame 
+                BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray800}}"
+                Padding="15"
+                CornerRadius="10"
+                IsVisible="{Binding ScannedText, Converter={StaticResource StringToBoolConverter}}">
+                <VerticalStackLayout Spacing="5">
+                    <Label 
+                        Text="Last Scanned:"
+                        FontSize="12"
+                        FontAttributes="Bold"/>
+                    <Label 
+                        Text="{Binding ScannedText}"
+                        FontSize="14"
+                        LineBreakMode="WordWrap"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Control Buttons -->
+            <HorizontalStackLayout 
+                Spacing="10"
+                HorizontalOptions="Center">
+                <Button 
+                    Text="Back"
+                    Command="{Binding GoBackCommand}"
+                    WidthRequest="100"
+                    HeightRequest="50"/>
+                <Button 
+                    Text="{Binding IsScanning, Converter={StaticResource BoolToScanTextConverter}}"
+                    Command="{Binding ToggleScanningCommand}"
+                    WidthRequest="100"
+                    HeightRequest="50"
+                    BackgroundColor="{StaticResource Primary}"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </Grid>
+
+</ContentPage>

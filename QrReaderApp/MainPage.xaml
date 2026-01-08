@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:QrReaderApp.ViewModels"
+             x:Class="QrReaderApp.MainPage"
+             x:DataType="vm:MainViewModel"
+             Title="{Binding Title}">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25"
+            VerticalOptions="Center">
+            
+            <Image
+                Source="dotnet_bot.png"
+                HeightRequest="200"
+                Aspect="AspectFit"
+                SemanticProperties.Description="QR Code Scanner App Logo" />
+
+            <Label
+                Text="QR Code Reader"
+                Style="{StaticResource Headline}"
+                HorizontalTextAlignment="Center"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <Label
+                Text="Scan QR codes quickly and easily with your device camera"
+                Style="{StaticResource SubHeadline}"
+                HorizontalTextAlignment="Center"
+                SemanticProperties.HeadingLevel="Level2" />
+
+            <Button
+                Text="Open QR Scanner" 
+                Command="{Binding NavigateToScannerCommand}"
+                SemanticProperties.Hint="Opens the QR code scanner"
+                HorizontalOptions="Fill"
+                HeightRequest="60"
+                FontSize="18"
+                Margin="0,20,0,0" />
+            
+            <VerticalStackLayout Spacing="10" Margin="0,30,0,0">
+                <Label
+                    Text="Features:"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center" />
+                
+                <Label
+                    Text="• Fast QR code detection"
+                    FontSize="14"
+                    HorizontalTextAlignment="Center" />
+                
+                <Label
+                    Text="• Real-time scanning"
+                    FontSize="14"
+                    HorizontalTextAlignment="Center" />
+                
+                <Label
+                    Text="• Easy to use interface"
+                    FontSize="14"
+                    HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
