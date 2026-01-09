@@ -30,7 +30,6 @@
                 VerticalOptions="Center"
                 Padding="0">
                 <Grid>
-                    <BoxView Color="White" Opacity="0.3" />
                     <Label 
                         Text="Align QR code within frame"
                         TextColor="White"
